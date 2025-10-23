@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Agustin Natalicchio" />
+    <title>Gestor de Paquetes (MVC)</title>
+    <style>
+        :root {
+            font-family: system-ui, sans-serif;
+            color-scheme: light dark;
+        }
+
+        body {
+            margin: 2rem;
+        }
+
+        .app {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: .75rem;
+            margin-bottom: 1rem;
+        }
+
+        input,
+        button,
+        select {
+            padding: .6rem .7rem;
+            margin: 0 .5rem;
+            font-size: 1rem;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .error {
+            color: #918584;
+            font-size: .95rem;
+            margin: .25rem 0 .5rem;
+        }
+
+        .list {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .list th,
+        .list td {
+            padding: .6rem .5rem;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .pill {
+            font-size: .8rem;
+            padding: .2rem .5rem;
+            border-radius: 999px;
+            border: 1px solid #ccc;
+        }
+
+        .recibido {
+            background: #eafbea;
+            border-color: #9ad29a;
+            color: #2e7d32;
+        }
+
+        .badge {
+            font-size: .9rem;
+        }
+
+        .row--recibido .tracking {
+            text-decoration: line-through;
+            opacity: .7;
+        }
+
+        .row--recibido .status-ico::before {
+            content: "✔";
+            margin-right: .25rem;
+        }
+
+        .row--pendiente .status-ico::before {
+            content: "✉";
+            margin-right: .25rem;
+        }
+
+        .empty {
+            padding: 1rem;
+            text-align: center;
+            border: 1px dashed #ccc;
+            border-radius: .5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <h1>📬 Gestor de Paquetes</h1>
+        <form id="form-alta" autocomplete="off">
+            <input id="inp-remitente" name="remitente" placeholder="Remitente" />
+            <input id="inp-tracking" name="tracking" placeholder="Código de seguimiento" />
+            <button type="submit">Agregar</button>
+        </form>
+        <div id="msg-error" class="error"></div>
+        <table class="list">
+            <thead>
+                <tr>
+                    <th>Estado</th>
+                    <th>Tracking</th>
+                    <th>Remitente</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+        <div id="vacio" class="empty" hidden>Sin paquetes. Agregá el primero 👆</div>
+    </div>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
